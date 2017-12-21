@@ -1,2 +1,0 @@
-# Get-Next-Line
-GNL
