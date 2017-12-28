@@ -1,14 +1,4 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: soleksiu <marvin@42.fr>                    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/12/02 17:10:55 by soleksiu          #+#    #+#             */
-/*   Updated: 2017/12/13 14:35:48 by soleksiu         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
+
 
 #include <sys/types.h>
 #include <sys/uio.h>
@@ -19,51 +9,46 @@
 int     get_next_line(const int fd, char **line)
 {
     char	buf[BUFF_SIZE + 1];
-    int				ret;
+    int		ret;
     size_t			index;
 	static  char	*tmp;
+    int     flag;
 
     ft_strclr(*line);
-
-
-	// if (!*line)
-	// 	ft_strnew(0);
+    ft_bzero(buf, BUFF_SIZE + 1);
     ret = 1;
     index = 0;
-    if (fd == -1 || BUFF_SIZE < 1)
+    flag = 0;
+    if (!line || fd == -1 || BUFF_SIZE < 1)
         return (-1);
-    if (buf[0])
-           *line = ft_strjoin(*line, buf);
-
+    if (tmp != NULL) {
+        while (tmp[index] != '\n' && tmp[index] != '\0')
+            index++;
+        if (tmp[index] == '\n')
+            flag = 1;
+        *line = ft_strsub(tmp, 0, index);
+        tmp = ft_strsub(tmp, (unsigned int) index + 1, (ft_strlen(tmp) - index));
+        if (flag == 1)
+            return 1;
+    }
+    index = 0;
     while (ret > 0)
     {
-        ret = read(fd, buf, BUFF_SIZE);
-        if (ft_strchr(buf, '\n') == NULL) {
+        ret = (int) read(fd, buf, BUFF_SIZE);
+        if (ft_strchr(buf, '\n') == NULL) 
             *line = ft_strjoin(*line, buf);
-        }
         else 
         {
-            while (buf[index] != '\n')
-            {
+            while (buf[index] != '\n' && buf[index] != '\0')
                 index++;
-            }
             *line = ft_strjoin(*line, ft_strsub(buf, 0, index));
-            tmp = ft_strsub(buf, index + 1, BUFF_SIZE - index);
-            ft_bzero((void *)buf, BUFF_SIZE);
-            ft_strcat(buf, tmp);
-    		printf("BUF\t%s\n", buf);
-            printf("TMP\t%s\n", tmp);
-            printf("LIN\t%s\n", *line);
-            return 1;
+            tmp = ft_strsub(buf, (unsigned int) (index + 1), (ft_strlen(buf) - index));
+            if (tmp[0] == '\0' && buf[0] == '\0')
+                return 0;
+            else
+                return 1;
+
         }
     }
-    // printf("BUF\t%s\n", buf);
-    // if (ret == 0)
-    // {
-    // 	*line = ft_strdup(buf);
-    //     return (0);
-    // }
-    // else if (ret == -1)
-    //     return (-1);
+    return -1;
 }
-
