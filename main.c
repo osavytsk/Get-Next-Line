@@ -10,11 +10,16 @@ int	main(void){
 
 	int fd1;
 
-    fd1 = open("/Users/osavytsk/gnl/test", O_RDONLY);
+    fd1 = open("/Users/osavytsk/gnl/qwe1.txt", O_RDONLY);
 
-	while(get_next_line(fd1, &line) > 0) {
-		printf("RESULT\t%s\n==========\n", line);
-	}
+    get_next_line(fd1, &line);
+    printf("%d\n", strcmp(line, "aaa"));
+    get_next_line(fd1, &line);
+    printf("%d\n", strcmp(line, "bbb"));
+    get_next_line(fd1, &line);
+    printf("%d\n", strcmp(line, "ccc"));
+    get_next_line(fd1, &line);
+    printf("%d\n", strcmp(line, "ddd"));
 	close(fd1);
 	return 0;
 }

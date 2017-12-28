@@ -43,12 +43,14 @@ int     get_next_line(const int fd, char **line)
                 index++;
             *line = ft_strjoin(*line, ft_strsub(buf, 0, index));
             tmp = ft_strsub(buf, (unsigned int) (index + 1), (ft_strlen(buf) - index));
-            if (tmp[0] == '\0' && buf[0] == '\0')
-                return 0;
-            else
+//            if (tmp[0] == '\0' && buf[0] == '\0')
+//                return 0;
+//            else
                 return 1;
 
         }
     }
+    if (ret == 0 && *line[0] != '\0')
+        return 1;
     return -1;
 }
