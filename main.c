@@ -1,7 +1,8 @@
 #include "get_next_line.h"
 #include <stdio.h>
-
-
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <fcntl.h>
 
 int	main(void){
 
@@ -16,15 +17,20 @@ int	main(void){
         free(line);
     }
 
+
 //    get_next_line(fd1, &line);
 //    printf("%d\n", strcmp(line, "aaa"));
+//    free(line);
 //    get_next_line(fd1, &line);
 //    printf("%d\n", strcmp(line, "bbb"));
+//    free(line);
 //    get_next_line(fd1, &line);
 //    printf("%d\n", strcmp(line, "ccc"));
+//    free(line);
 //    get_next_line(fd1, &line);
 //    printf("%d\n", strcmp(line, "ddd"));
-	close(fd1);
+//    free(line);
 //    while (1);
+	close(fd1);
 	return 0;
 }

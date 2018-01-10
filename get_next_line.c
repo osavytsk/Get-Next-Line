@@ -1,15 +1,39 @@
-
-
 #include "get_next_line.h"
 
-//int     buf_manipul()
+t_gnl *     ft_listing(t_gnl **list, int fd)
 {
-    char    *s2;
+    t_gnl   *beg;
+    t_gnl   *our;
 
-
+    beg = *list;
+    while ((*list)->next != NULL)
+    {
+        if ((*list)->fd == fd)
+        {
+            our = *list;
+            *list = beg;
+            return (our);
+        }
+        *list = (*list)->next;
+    }
+    *list = beg;
+    our = (t_gnl*)malloc(sizeof(t_gnl));
+    our->fd = fd;
+    beg = our;
+    *list = our->next;
+    return (our);
 }
 
-int     stat_manipul(char **tmp, char ***line, char **s1)
+
+
+//int     buf_manipul()
+// {
+//     char    *s2;
+
+
+// }
+
+int         stat_manipul(char **tmp, char ***line, char **s1)
 {
     size_t      index;
     int         flag;
@@ -32,17 +56,25 @@ int     stat_manipul(char **tmp, char ***line, char **s1)
 
 int     get_next_line(const int fd, char **line)
 {
-    char	buf[BUFF_SIZE + 1];
-    int		ret;
-    size_t			index;
-	static  char	*tmp;
+    static  t_gnl *list;
+    // char    buf[BUFF_SIZE + 1];
+    // int     ret;
+    size_t          index;
+    // static  char    *tmp;
     char    *s1;
     char    *s2;
+
+    if (!list)
+        list = (t_gnl*)malloc(sizeof(t_gnl));
+    ft_listing(&list, fd);
+//go next po list and find fd | if list->fd == fd | return teckyshiy list
+//list vernut' v nachalo
+// elsi nety fd create new list with this fd with malloc(in begin of our lists)
 
     ft_bzero(buf, BUFF_SIZE + 1);
     ret = 1;
     index = 0;
-    if (!line || fd < 0 || BUFF_SIZE < 1)
+    if (!line || fd < 0 || BUFF_SIZE < 1 || read(fd, buf, 0) < 0)
         return (-1);
     *line = NULL;
     if (tmp != NULL && tmp[0] != '\0')
