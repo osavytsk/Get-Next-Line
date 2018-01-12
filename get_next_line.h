@@ -12,7 +12,7 @@
 
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
-# define BUFF_SIZE 666
+# define BUFF_SIZE 777
 
 # include <fcntl.h>
 # include <unistd.h>
@@ -21,11 +21,13 @@
 
 typedef struct			s_gnl
 {
-	char    			buf[BUFF_SIZE + 1];
-	int     			ret;
-    int                 fd;
-	char    			*tmp;
-	struct s_gnl		*next; 
+	char				buf[BUFF_SIZE + 1];
+	int					ret;
+	int					fd;
+	char				*tmp;
+	char				*s1;
+	char				*s2;
+	struct s_gnl		*next;
 }						t_gnl;
 
 int						get_next_line(const int fd, char **line);
