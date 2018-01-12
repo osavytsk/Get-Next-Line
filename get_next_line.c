@@ -12,10 +12,10 @@
 
 #include "get_next_line.h"
 
-static t_gnl       *ft_listing(t_gnl **list, int fd)
+static t_gnl        *ft_listing(t_gnl **list, int fd)
 {
-    t_gnl   *beg;
-    t_gnl   *our;
+    t_gnl           *beg;
+    t_gnl           *our;
 
     beg = *list;
     while ((*list) != NULL)
@@ -35,9 +35,9 @@ static t_gnl       *ft_listing(t_gnl **list, int fd)
     return (our);
 }
 
-static int      buf_manipul(t_gnl **tl, char ***line, char **s1, char **s2)
+static int          buf_manipul(t_gnl **tl, char ***line, char **s1, char **s2)
 {
-    int     i;
+    int             i;
 
     i = 0;
     if (ft_strchr((*tl)->buf, '\n') == NULL)
@@ -64,11 +64,11 @@ static int      buf_manipul(t_gnl **tl, char ***line, char **s1, char **s2)
     }
 }
 
-static int      stat_manipul(t_gnl **list, char ***line)
+static int          stat_manipul(t_gnl **list, char ***line)
 {
-    size_t      i;
-    int         flag;
-    char        *s1;
+    size_t          i;
+    int             flag;
+    char            *s1;
 
     i = 0;
     flag = 0;
@@ -84,7 +84,7 @@ static int      stat_manipul(t_gnl **list, char ***line)
     return (flag == 1 ? 1 : 0);
 }
 
-int     get_next_line(const int fd, char **line)
+int                 get_next_line(const int fd, char **line)
 {
     static t_gnl    *list;
     t_gnl           *tl;
