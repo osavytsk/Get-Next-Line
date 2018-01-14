@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: osavytsk <osavytsk@student.unit.ua>        +#+  +:+       +#+        */
+/*   By: osavytsk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/12 03:18:00 by osavytsk          #+#    #+#             */
-/*   Updated: 2018/01/12 03:18:00 by osavytsk         ###   ########.fr       */
+/*   Created: 2018/01/14 21:31:24 by osavytsk          #+#    #+#             */
+/*   Updated: 2018/01/14 21:31:32 by osavytsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
-# define BUFF_SIZE 777
+# define BUFF_SIZE 1024
 
 # include <fcntl.h>
 # include <unistd.h>

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: osavytsk <osavytsk@student.unit.ua>        +#+  +:+       +#+        */
+/*   By: osavytsk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/12 03:18:00 by osavytsk          #+#    #+#             */
-/*   Updated: 2018/01/12 03:18:00 by osavytsk         ###   ########.fr       */
+/*   Created: 2018/01/14 21:31:06 by osavytsk          #+#    #+#             */
+/*   Updated: 2018/01/14 21:31:18 by osavytsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ static t_gnl		*ft_listing(t_gnl **list, int fd)
 	}
 	our = (t_gnl*)malloc(sizeof(t_gnl));
 	our->fd = fd;
+	our->tmp = NULL;
 	*list = our;
 	our->next = beg;
 	return (our);
